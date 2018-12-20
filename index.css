@@ -44,3 +44,41 @@ vbox > *, hbox > *, box > * {
     -moz-animation: @arguments;
     animation: @arguments;
 }
+
+button,
+input[type=button],
+input[type=submit],
+input[type=reset] {
+	line-height: 1.2;
+	padding: 0.4em 0.8em;
+	margin: 0em;
+	border: none;
+	border-radius: 0.2em;
+	background: #E6E6E6;
+	font-weight: 500;
+	font-family: inherit;
+	box-sizing: border-box;
+	color: #333;
+	outline: none !important;
+	position: relative;
+	overflow: hidden;
+	animation: ripple-effect;
+}
+.InputGroup,
+hbox.ButtonGroup {
+    margin-bottom: 1em;
+}
+hbox.ButtonGroup * + * {
+    margin-left: 0.6em;
+}
+
+hbox.InputGroup {
+    align-items: center;
+}
+hbox.InputGroup .Label {
+    margin-right: 0.4em;
+    width: 12em;
+}
+vbox.InputGroup > .Label {
+    padding-bottom: 0.6em;
+}

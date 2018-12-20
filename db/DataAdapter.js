@@ -46,7 +46,7 @@ var DataAdapter = (function() {
         insertMulti: function(clazz, list, callback) {
             console.log("Insert Multi:", clazz.tablename, data);
         },
-        update: function(clazz, data, callback) {
+        update: function(clazz, data, condition, callback) {
             console.log("Update:", clazz.tablename, data);
             var conn = getConnection();
             // conn.run("UPDATE ...");
@@ -56,13 +56,18 @@ var DataAdapter = (function() {
             var conn = getConnection();
             // conn.run("DELETE ...");
         },
-        getAll: function(clazz, callback) {
-            console.log("Get all:", clazz.tablename);
+        getAll: function(clazz, condition, callback) {
+            console.log("Get all:", clazz.tablename, (condition ? " with condition " + condition.build() : ""));
             var db = getConnection();
-            db.all(String.format("SELECT {0} FROM {1} WHERE 1 = 1", "rowid oid, " + clazz.columns.map((col)=> col.name).join(), clazz.tablename),
-            [], function(err, result) {
-                if (!err) callback(result);
-            });
+            var sql = String.format("SELECT {0} FROM {1} WHERE {2}",
+                        "rowid oid, " + clazz.columns.map((col)=> col.name).join(),
+                        clazz.tablename,
+                        condition ? condition.build() : "1 = 1");
+            console.log("### SQL:", sql);
+            db.all(sql, [], function(err, result) {
+                    console.log("### getAll:", err, result);
+                    if (!err) callback(result);
+                });
         },
         getById: function(clazz, id, callback) {
             console.log("Get by Id:", clazz.tablename, id);

@@ -1,0 +1,25 @@
+<vbox xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://evolus.vn/Namespaces/WebUI/1.0">
+    <h3>Create New Account</h3>
+    <hbox class="InputGroup">
+        <span class="Label">Name:</span>
+        <input type="text" anon-id="inputName"/>
+    </hbox>
+    <hbox class="InputGroup">
+        <span class="Label">Email:</span>
+        <input type="text" anon-id="inputEmail"/>
+    </hbox>
+    <hbox class="InputGroup">
+        <span class="Label">Gender:</span>
+        <ui:SelectBox anon-id="selectGender">
+            <option value="0" text=""/>
+            <option value="1" text="Female"/>
+            <option value="2" text="Male"/>
+            <option value="3" text="Unknow"/>
+        </ui:SelectBox>
+    </hbox>
+    <hbox>
+        <span flex="1"></span>
+        <button anon-id="btnSave">Save</button>
+        <button anon-id="btnClear">Clear</button>
+    </hbox>
+</vbox>
